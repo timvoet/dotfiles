@@ -1,0 +1,49 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
+""" Eduardo Del Balso's Vim Setup
+""" Based on the work of Ben Bleything.
+"""
+""" Original: http://github.com/bleything/dotvim
+"""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" K E Y   B I N D I N G S
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader=','    " set leader to ,
+
+" Open shortcuts 
+map <leader>? :tabe ~/mydotfiles/vim/shortcuts.txt<CR>
+autocmd BufRead ~/mydotfiles/vim/shortcuts.txt map <buffer> <leader>? :bdelete shortcuts.txt<CR>
+autocmd BufRead ~/mydotfiles/vim/shortcuts.txt setfiletype txtfmt
+
+" Tab mappings.
+map <leader>tt :tabnew<cr>
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tf :tabfirst<cr>
+map <leader>tl :tablast<cr>
+map <leader>tm :tabmove
+
+" NERDTree Mappings
+map <leader>f :NERDTreeToggle<cr>
+
+" one-stroke window maximizing
+"map <C-H> <C-W>h<C-W><BAR>
+"map <C-L> <C-W>l<C-W><BAR>
+"map <C-J> <C-W>j<C-W>_
+"map <C-K> <C-W>k<C-W>_
+
+" quick buffer switching
+map <leader>[ :bprevious<CR>
+map <leader>] :bnext<CR>
+
+" shortcut to compile/run the current file
+"map <leader>r :w<CR>:make %<CR>
+
+" shortcut to strip trailing whitespace
+"map <leader>s :s/\s\+$//g<CR>
+

@@ -1,0 +1,32 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
+""" Eduardo Del Balso's Vim Setup
+""" Based on the work of Ben Bleything.
+"""
+""" Copied from: http://github.com/bleything/dotvim
+"""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" G U I   O P T I O N S
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set mouse=a                 " use mouse when possible
+"set guifont=Inconsolata:12 " Inconsolata, 16pt high
+set guifont=Andale\ Mono:h12
+
+" set default window size
+set columns=100
+set lines=48
+
+" GUI option string.  Values:
+"   a: visual-mode selections go to the clipboard
+"   A: modeless selections go to the clipboard
+"   c: don't pop up windows; use the console for dialog boxes and such
+"   e: use GUI tab bar instead of text tab bar
+set guioptions=aAce
+
+set fuopt+=maxhorz " allow fullscreen window to expand horizontally to 
+                   " size of screen.
+
+set noanti
+colorscheme blackboard_ed

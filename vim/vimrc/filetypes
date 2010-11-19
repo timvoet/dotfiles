@@ -1,0 +1,40 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
+""" Eduardo Del Balso's Vim Setup
+""" Based on the work of Ben Bleything.
+"""
+""" Copied from: http://github.com/bleything/dotvim
+"""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" F I L E T Y P E   O P T I O N S
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" use filetype plugins to determine indent settings
+filetype plugin indent on
+
+" ruby and yaml files are indented by two
+autocmd FileType ruby,rdoc,cucumber,yaml set softtabstop=2 shiftwidth=2
+
+" Gemfile, Isolate, Vagrantfile and config.ru are ruby
+autocmd BufNewFile,BufRead Gemfile     setfiletype ruby
+autocmd BufNewFile,BufRead Isolate     setfiletype ruby
+autocmd BufNewFile,BufRead Vagrantfile setfiletype ruby
+autocmd BufNewFile,BufRead config.ru   setfiletype ruby
+
+" set up compiler for ruby files
+autocmd FileType ruby compiler ruby
+
+" don't show whitespace in help files
+autocmd FileType help set nolist
+
+" twiki files
+autocmd BufNewFile,BufRead *.twiki set filetype=twiki
+
+" set filetype on config files for vim, mutt, and bash
+autocmd BufNewFile,BufRead ~/.vim/*  setfiletype vim
+autocmd BufNewFile,BufRead ~/.vim/vimrc/* setfiletype vim
+autocmd BufNewFile,BufRead ~/.mutt/* setfiletype muttrc
+autocmd BufNewFile,BufRead ~/.bash/* setfiletype sh
+autocmd BufNewFile,BufRead ~/lib/bash/config_files/vim/vimrc/*  setfiletype vim
+

@@ -1,0 +1,31 @@
+mkcd () {
+    mkdir -p "$*"
+    cd "$*"
+}
+
+
+
+#shot - takes a screenshot of your current window
+shot () {
+    import -frame -strip -quality 75 "$HOME/screen-shot_$(date +%F_%R).png"
+}
+#revert all changes from an SVN managed folder
+svn_revert(){
+    svn st | awk '{print $2}' | xargs svn revert
+}
+
+n() {
+    $EDITOR ~/Dropbox/notes/"$*".txt
+}
+
+nls() {
+    ls -c ~/Dropbox/notes/ | grep "$*"
+}
+
+gogogadget(){
+    VBoxHeadless -startvm "$1" & > /dev/null
+}
+
+clear_asl_logs(){
+    sudo rm -f /private/var/log/asl/*.asl
+}

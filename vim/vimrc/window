@@ -1,0 +1,45 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
+""" Eduardo Del Balso's Vim Setup
+""" Based on the work of Ben Bleything.
+"""
+""" Copied from: http://github.com/bleything/dotvim
+"""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" W I N D O W   O P T I O N S
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set ruler          " shows cursor position in the lower right
+set showcmd        " shows incomplete command to the left of the ruler
+set winminheight=0 " allow windows to be 0 lines tall
+set winminwidth=0  " allow windows to be 0 lines wide
+set laststatus=2   " always show statusline
+
+" set up statusline, ends up looking like this:
+"
+"   [1] window.vimrc [Preview] [vim,+]          0x00 @ l22 c51 (88%)
+"
+set statusline=
+set statusline+=%n:\                      " buffer number
+set statusline+=%f                        " filename
+set statusline+=%<                        " truncate here if necessary
+set statusline+=%10w                      " displays [Preview] if it is
+set statusline+=\ [                       " fix spacing, open bracket
+set statusline+=%{strlen(&ft)?&ft:'none'} " filetype
+set statusline+=%M                        " + if modified, - if r/o
+set statusline+=]                         " close bracket
+set statusline+=%=                        " right-align remainder
+set statusline+=0x%02B\                   " character hex value
+set statusline+=@\ L%l\ C%c\ (%P)\        " position in file
+
+" Useful status information at bottom of screen
+" set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{exists('g:loaded_fugitive')?fugitive#statusline():''}%{exists('g:loaded_rvm')?rvm#statusline():''}%=%-16(\ %l,%c-%v\ %)%P
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" C O L O R   O P T I O N S
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set background=dark " use colors suitable for dark backgrounds
+colorscheme blackboard_ed
