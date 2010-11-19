@@ -1,0 +1,19 @@
+This configuration is the automated setup and configuration for all the dot files on linux and mac environments.
+
+For now what is supported is
+    - bash
+        - ssh completion
+        - some bash functions
+    - vim
+        - vimrc
+        - plugins
+            - NERDTree
+            - bufexplorer
+            - git integration
+        - syntax
+            - markdown
+            - textile
+            - git
+            - python
+            - bash
+        - colors
