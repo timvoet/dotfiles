@@ -1,6 +1,7 @@
 ########################################################################
 ###
-### Eduardo Del Balso's Vim Setup
+### Tim Voet's Vim Setup
+### Based on Eduardo Del Balso's Vim Setup
 ### Based on the work of Ben Bleything.
 ### Rakefile updated to support zip and gzip files
 ###
