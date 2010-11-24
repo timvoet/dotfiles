@@ -2,6 +2,7 @@
 export HISTCONTROL=ignoredups
 # ... and ignore same successive entries.
 export HISTCONTROL=ignoreboth
+export HISTCONTROL=erasedups
 
 if [ -f ~/.bash/aliases ]; then
     . ~/.bash/aliases

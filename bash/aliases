@@ -6,4 +6,30 @@ if [ "$TERM" != "dumb" ]; then
     alias egrep='egrep --color=auto'
 fi
 
+alias reload='source ~/.bashrc'
+
 alias mycal='cal -y'
+alias c='clear'
+alias edit='$EDITOR'
+alias q='exit'
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+alias ..='cd ..'        # Go up one directory
+alias ...='cd ../..'    # Go up two directories
+alias -- -="cd -"       # Go back
+
+function aliases-help() {
+  echo "Generic Alias Usage"
+  echo
+  echo "  ls     = ls -G"
+  echo "  grep   = grep --color=auto"
+  echo "  egrep  = egrep --color=auto"
+  echo "  c      = clear"
+  echo "  ..     = cd .."
+  echo "  ...    = cd ../.."
+  echo "  -      = cd -"
+  echo "  editor = $EDITOR"
+  echo "  q      = exit"
+  echo "  mycal  = cal -y"
+  echo "  tree   = prints tree structure"
+  echo 
+}

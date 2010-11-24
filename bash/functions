@@ -22,6 +22,29 @@ nls() {
     ls -c ~/Dropbox/notes/ | grep "$*"
 }
 
+ndel(){
+  cd ~/Dropbox/notes
+  if [[ -f $1.txt ]]; then
+    echo "Removing $1 note"
+    rm "$1.txt"
+    cd -
+  else
+    echo "file doesn't exist"
+    cd -
+  fi
+}
+
+myndel(){
+  str="~/Dropbox/notes/$1.txt"
+  echo $str
+  if [[ -f "$str" ]]
+  then
+    echo "Removing $1 note"
+    rm "$str"
+  else
+    echo "note [$str] does not exists"
+  fi
+}
 gogogadget(){
     VBoxHeadless -startvm "$1" & > /dev/null
 }
