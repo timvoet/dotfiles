@@ -34,17 +34,7 @@ ndel(){
   fi
 }
 
-myndel(){
-  str="~/Dropbox/notes/$1.txt"
-  echo $str
-  if [[ -f "$str" ]]
-  then
-    echo "Removing $1 note"
-    rm "$str"
-  else
-    echo "note [$str] does not exists"
-  fi
-}
+
 gogogadget(){
     VBoxHeadless -startvm "$1" & > /dev/null
 }
