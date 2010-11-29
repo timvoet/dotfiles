@@ -34,3 +34,6 @@ NERDCommenter
 NERDTree
 <l>f        toggles NERDTree explorer
 :NERDTree <path>  opens nerd tree in the specified path
+
+BASH tricks
+echo -n "some string" -- echo's the text without the new line
