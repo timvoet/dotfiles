@@ -37,3 +37,9 @@ NERDTree
 
 BASH tricks
 echo -n "some string" -- echo's the text without the new line
+tidy -i -m index.html -- reformats and re-indents an html file -i indents -m re-writes the orignal
+
+Vim bindings
+============
+<l>?      display shortcuts ( this file )
+<l>n      toggles line numbers

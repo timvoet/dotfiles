@@ -47,3 +47,5 @@ map <leader>] :bnext<CR>
 " shortcut to strip trailing whitespace
 "map <leader>s :s/\s\+$//g<CR>
 
+" toggle line numbers
+map <leader>n :set number!<cr>
