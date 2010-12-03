@@ -43,3 +43,4 @@ Vim bindings
 ============
 <l>?      display shortcuts ( this file )
 <l>n      toggles line numbers
+<l>s      trims the trailing white space from the entire file
