@@ -44,3 +44,8 @@ Vim bindings
 <l>?      display shortcuts ( this file )
 <l>n      toggles line numbers
 <l>s      trims the trailing white space from the entire file
+zr        opens all cold folds
+zm        closes all folds
+zo        opens a specific fold
+zc        closes a specific fold
+
