@@ -16,6 +16,7 @@ alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 alias ..='cd ..'        # Go up one directory
 alias ...='cd ../..'    # Go up two directories
 alias -- -="cd -"       # Go back
+alias shred='shred -uzv'
 
 function aliases-help() {
   echo "Generic Alias Usage"
@@ -31,5 +32,6 @@ function aliases-help() {
   echo "  q      = exit"
   echo "  mycal  = cal -y"
   echo "  tree   = prints tree structure"
+  echo "  shred  = shreds a file with some presets ( uzv )"
   echo 
 }

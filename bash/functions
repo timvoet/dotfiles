@@ -53,3 +53,23 @@ sshcopyid(){
         echo "file does not exist"
     fi
 }
+
+functions-help(){
+  echo " "
+  echo " "
+  echo " "
+  echo " List of bash functions that are available"
+  echo " "
+  echo " mkcd       = makes a fold ( recursive ) and cd's into that directory "
+  echo " shot       = takes a screen shot"
+  echo " svn_revert = reverts all svn changes in a given folder"
+  echo " n          = edits a note file"
+  echo " nls        = greps for a pattern in a note file"
+  echo " ndel       = deletes a note file"
+  echo " gogogadget = starts a VirtualBox VM"
+  echo " clear_asl_logs = removes asl logs on a mac"
+  echo " sshcopyid  = copy's an ssh_id.pub to a remote host"
+  echo " "
+  echo " "
+  echo " "
+}
