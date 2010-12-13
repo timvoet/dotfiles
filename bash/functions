@@ -54,6 +54,9 @@ sshcopyid(){
     fi
 }
 
+mycalc (){
+    echo "$*" | bc -l;
+}
 functions-help(){
   echo " "
   echo " "
