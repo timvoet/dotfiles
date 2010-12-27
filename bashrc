@@ -14,5 +14,9 @@ fi
 if [ -f ~/.bash/completion ]; then
     . ~/.bash/completion
 fi
+
+if [ -f ~/.bash/git-completion ]; then
+    . ~/.bash/git-completion
+fi
 export EDITOR=`which vim`
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
