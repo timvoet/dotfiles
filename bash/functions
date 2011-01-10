@@ -19,7 +19,13 @@ n() {
 }
 
 nls() {
+    echo ""
+    echo ""
+    echo "Listing available notes"
+    echo "-----------------------------"
+    echo ""
     ls -c ~/Dropbox/notes/ | grep "$*"
+    echo ""
 }
 
 ndel(){
@@ -34,6 +40,16 @@ ndel(){
   fi
 }
 
+ncat(){
+    cd ~/Dropbox/notes
+    if [[ -f $1.txt ]]; then
+      cat "$1.txt"
+      cd -
+    else
+      echo "file doesn't exist"
+      cd -
+    fi 
+}
 
 gogogadget(){
     VBoxHeadless -startvm "$1" & > /dev/null
