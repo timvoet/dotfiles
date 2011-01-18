@@ -50,3 +50,11 @@ map <leader>s :%s/\\s\\+$//gi<CR>
 " toggle line numbers
 map <leader>n :set number!<cr>
 
+" Bubble Single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+
+" Bubble Multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+

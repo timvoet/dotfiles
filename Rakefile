@@ -25,7 +25,7 @@ namespace :vim do
     :bufexplorer   => "http://www.vim.org/scripts/download_script.php?src_id=12363",
     #:nerdcommenter => "git://github.com/scrooloose/nerdcommenter.git",
     :nerdtree      => "git://github.com/scrooloose/nerdtree.git",
-    #:rails         => "git://github.com/tpope/vim-rails.git",
+    :rails         => "git://github.com/tpope/vim-rails.git",
     #:surround      => "git://github.com/tpope/vim-surround.git",
     #:tabular       => "git://github.com/godlygeek/tabular",
     #:taglist       => "http://www.vim.org/scripts/download_script.php?src_id=7701",
@@ -36,8 +36,8 @@ namespace :vim do
     :git            => "git://github.com/tpope/vim-git.git",
     #:fugitive       => "git://github.com/tpope/vim-fugitive.git",
     #:jekyll         => "git://github.com/csexton/jekyll.vim.git",
-    #:rvm            => "https://github.com/csexton/rvm.vim",
-
+    :rvm            => "git://github.com/csexton/rvm.vim.git",
+    :unimpaired      => "git://github.com/tpope/vim-unimpaired.git",
 
 #    :grep           => "http://www.vim.org/scripts/download_script.php?src_id=7645",
 
