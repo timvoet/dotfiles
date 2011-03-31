@@ -17,6 +17,7 @@ alias ..='cd ..'        # Go up one directory
 alias ...='cd ../..'    # Go up two directories
 alias -- -="cd -"       # Go back
 alias shred='shred -uzv'
+alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 
 function aliases-help() {
   echo "Generic Alias Usage"
@@ -33,5 +34,6 @@ function aliases-help() {
   echo "  mycal  = cal -y"
   echo "  tree   = prints tree structure"
   echo "  shred  = shreds a file with some presets ( uzv )"
+  echo " whereami= tells you what is the machine name you are on"
   echo 
 }

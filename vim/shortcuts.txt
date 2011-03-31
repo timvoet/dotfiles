@@ -49,3 +49,4 @@ zm        closes all folds
 zo        opens a specific fold
 zc        closes a specific fold
 
+:diffsplit <filename>
