@@ -4,7 +4,6 @@ mkcd () {
 }
 
 
-
 #shot - takes a screenshot of your current window
 shot () {
     import -frame -strip -quality 75 "$HOME/screen-shot_$(date +%F_%R).png"
@@ -48,24 +47,17 @@ ncat(){
     else
       echo "file doesn't exist"
       cd -
-    fi 
+    fi
 }
 
-gogogadget(){
-    VBoxHeadless -startvm "$1" & > /dev/null
-}
-
-clear_asl_logs(){
-    sudo rm -f /private/var/log/asl/*.asl
-}
 
 sshcopyid(){
     str=~/.ssh/$1.pub
     echo "str is $str"
-    if [ -e $str ]
+    if [ -f $str ]
     then
         cat $str | ssh $2 "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys; chmod 700 .ssh; chmod 600 .ssh/authorized_keys"
-    else 
+    else
         echo "file does not exist"
     fi
 }
@@ -73,6 +65,56 @@ sshcopyid(){
 mycalc (){
     echo "$*" | bc -l;
 }
+
+find_tomcat_id () {
+    pid=`ps aux | grep tomcat | grep -v "grep" | grep "java" |  awk '{ print $2 }'`
+    echo $pid
+    return $pid
+}
+#find's the tomcat PID
+ftc () {
+    PID=`find_tomcat_id`
+
+    if [[ $PID != "" ]] ;then
+        echo "Tomcat process_id:" $PID
+    else
+        echo "Tomcat is not running"
+    fi
+}
+#kill a misbehaving tomcat process
+ktc () {
+    PID=`find_tomcat_id`
+    if [[ $PID != "" ]] ;then
+        kill -9 $PID
+        PID=`find_tomcat_id`
+        while [[ $PID != "" ]]; do
+          echo "Waiting for shutdown confirmation"
+          PID=`find_tomcat_id`
+        done
+        echo "shutdown complete"
+    else
+        echo "Tomcat is not running"
+    fi
+}
+stc (){
+ $CATALINA_HOME/bin/startup.sh;tail -f $CATALINA_HOME/logs/catalina.out
+}
+ltc (){
+ tail -f $CATALINA_HOME/logs/catalina.out
+}
+
+follow_tc(){
+  tail -f $CATALINA_HOME/logs/catalina.out | egrep -vw '.*KeepAlive|meetingPoll|logCobrowsePerformance|TOUCH.*"'
+}
+
+# ------------------------------------------------------------------------------ #
+# This function sets the title of the terminal-emulator
+# or tab.
+# ------------------------------------------------------------------------------ #
+title() {
+  echo -ne "\033]0;${1}\007"
+}
+
 functions-help(){
   echo " "
   echo " "
@@ -85,8 +127,6 @@ functions-help(){
   echo " n          = edits a note file"
   echo " nls        = greps for a pattern in a note file"
   echo " ndel       = deletes a note file"
-  echo " gogogadget = starts a VirtualBox VM"
-  echo " clear_asl_logs = removes asl logs on a mac"
   echo " sshcopyid  = copy's an ssh_id.pub to a remote host"
   echo " "
   echo " "

@@ -38,7 +38,7 @@ namespace :vim do
     #:jekyll         => "git://github.com/csexton/jekyll.vim.git",
     :rvm            => "git://github.com/csexton/rvm.vim.git",
     :unimpaired      => "git://github.com/tpope/vim-unimpaired.git",
-
+    :gpg            => "git://gitorious.org/vim-gnupg/vim-gnupg.git",
 #    :grep           => "http://www.vim.org/scripts/download_script.php?src_id=7645",
 
     # syntax definitions
