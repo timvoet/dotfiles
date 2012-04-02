@@ -22,7 +22,7 @@ namespace :vim do
   BUNDLES = {
     # plugins
     #:txtfmt         => "http://www.vim.org/scripts/download_script.php?src_id=13856",
-    :bufexplorer   => "http://www.vim.org/scripts/download_script.php?src_id=12363",
+    :bufexplorer   => "https://github.com/corntrace/bufexplorer.git",
     #:nerdcommenter => "git://github.com/scrooloose/nerdcommenter.git",
     :nerdtree      => "git://github.com/scrooloose/nerdtree.git",
     :rails         => "git://github.com/tpope/vim-rails.git",

@@ -115,6 +115,10 @@ title() {
   echo -ne "\033]0;${1}\007"
 }
 
+millisec2seconds() {
+  echo "scale=3; $1 / 1000" | bc;
+}
+
 functions-help(){
   echo " "
   echo " "
@@ -128,6 +132,7 @@ functions-help(){
   echo " nls        = greps for a pattern in a note file"
   echo " ndel       = deletes a note file"
   echo " sshcopyid  = copy's an ssh_id.pub to a remote host"
+  echo " millisec2seconds = converts milliseconds to seconds"
   echo " "
   echo " "
   echo " "

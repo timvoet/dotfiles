@@ -1,10 +1,13 @@
 " Name:    gnupg.vim
-" Version: $Id: gnupg.vim 3051 2010-02-16 07:56:18Z mbr $
-" Author:  Markus Braun <markus.braun@krawel.de>
+" Last Change: 2011 Aug 13
+" Maintainer:  James Vega <vega.james@gmail.com>
+" Original Author:  Markus Braun <markus.braun@krawel.de>
 " Summary: Vim plugin for transparent editing of gpg encrypted files.
-" Licence: This program is free software; you can redistribute it and/or
-"          modify it under the terms of the GNU General Public License.
-"          See http://www.gnu.org/copyleft/gpl.txt
+" License: This program is free software; you can redistribute it and/or
+"          modify it under the terms of the GNU General Public License
+"          as published by the Free Software Foundation; either version
+"          2 of the License, or (at your option) any later version.
+"          See http://www.gnu.org/copyleft/gpl-2.0.txt
 "
 " Section: Documentation {{{1
 "
@@ -81,6 +84,11 @@
 "     If set, these recipients are used as defaults when no other recipient is
 "     defined. This variable is a Vim list. Default is unset.
 "
+"   g:GPGUsePipes
+"     If set to 1, use pipes instead of temporary files when interacting with
+"     gnupg.  When set to 1, this can cause terminal-based gpg agents to not
+"     display correctly when prompting for passwords.  Defaults to 0.
+"
 " Known Issues: {{{2
 "
 "   In some cases gvim can't decrypt files
@@ -126,7 +134,7 @@
 if (exists("g:loaded_gnupg") || &cp || exists("#BufReadCmd*.\(gpg\|asc\|pgp\)"))
   finish
 endif
-let g:loaded_gnupg = "$Revision: 3051 $"
+let g:loaded_gnupg = '2.2'
 let s:GPGInitRun = 0
 
 " check for correct vim version {{{2
@@ -170,17 +178,24 @@ highlight default link GPGHighlightUnknownRecipient ErrorMsg
 " initialize the plugin
 "
 function s:GPGInit()
+  call s:GPGDebug(3, ">>>>>>>> Entering s:GPGInit()")
+
+  " we don't want a swap file, as it writes unencrypted data to disk
+  setl noswapfile
+
+  " if persistent undo is present, disable it for this buffer
+  if exists('+undofile')
+    setl noundofile
+  endif
+
+  " the rest only has to be run once
   if s:GPGInitRun
     return
   endif
-  call s:GPGDebug(3, ">>>>>>>> Entering s:GPGInit()")
 
   " first make sure nothing is written to ~/.viminfo while editing
   " an encrypted file.
   set viminfo=
-
-  " we don't want a swap file, as it writes unencrypted data to disk
-  setl noswapfile
 
   " check what gpg command to use
   if (!exists("g:GPGExecutable"))
@@ -217,6 +232,11 @@ function s:GPGInit()
     let g:GPGDefaultRecipients = []
   endif
 
+  " prefer not to use pipes since it can garble gpg agent display
+  if (!exists("g:GPGUsePipes"))
+    let g:GPGUsePipes = 0
+  endif
+
   " print version
   call s:GPGDebug(1, "gnupg.vim ". g:loaded_gnupg)
 
@@ -251,7 +271,7 @@ function s:GPGInit()
   " noshelltemp isn't currently supported on Windows, but it doesn't cause any
   " errors and this future proofs us against requiring changes if Windows
   " gains noshelltemp functionality
-  let s:shelltemp = 0
+  let s:shelltemp = !g:GPGUsePipes
   if (has("unix"))
     " unix specific settings
     let s:shellredir = ">%s 2>&1"
@@ -324,7 +344,7 @@ function s:GPGDecrypt()
   " get the filename of the current buffer
   let filename = expand("<afile>:p")
 
-  " File doesn't exist yet, so force recipients
+  " File doesn't exist yet, so nothing to decrypt
   if empty(glob(filename))
     return
   endif
@@ -346,6 +366,7 @@ function s:GPGDecrypt()
   let &shelltemp = s:shelltempsave
   call s:GPGDebug(3, "output: ". output)
 
+  let asymmPattern = 'gpg: public key is \%(0x\)\=[[:xdigit:]]\{8,16}'
   " check if the file is symmetric/asymmetric encrypted
   if (match(output, "gpg: encrypted with [[:digit:]]\\+ passphrase") >= 0)
     " file is symmetric encrypted
@@ -365,7 +386,7 @@ function s:GPGDecrypt()
       echo
       echohl None
     endif
-  elseif (match(output, "gpg: public key is [[:xdigit:]]\\{8}") >= 0)
+  elseif (match(output, asymmPattern) >= 0)
     " file is asymmetric encrypted
     let b:GPGEncrypted = 1
     call s:GPGDebug(1, "this file is asymmetric encrypted")
@@ -373,10 +394,10 @@ function s:GPGDecrypt()
     let b:GPGOptions += ["encrypt"]
 
     " find the used public keys
-    let start = match(output, "gpg: public key is [[:xdigit:]]\\{8}")
+    let start = match(output, asymmPattern)
     while (start >= 0)
       let start = start + strlen("gpg: public key is ")
-      let recipient = strpart(output, start, 8)
+      let recipient = matchstr(output, '[[:xdigit:]]\{8,16}', start)
       call s:GPGDebug(1, "recipient is " . recipient)
       let name = s:GPGNameToID(recipient)
       if (strlen(name) > 0)
@@ -388,7 +409,7 @@ function s:GPGDecrypt()
         echom "The recipient \"" . recipient . "\" is not in your public keyring!"
         echohl None
       end
-      let start = match(output, "gpg: public key is [[:xdigit:]]\\{8}", start)
+      let start = match(output, asymmPattern, start)
     endwhile
   else
     " file is not encrypted
