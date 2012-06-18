@@ -1,10 +1,18 @@
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
-    alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     #alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+os=`uname`
+if [ $os == "Darwin" ]; then
+  alias rm='rmtrash'
+  alias ls='ls -G'
+else
+  alias ls='ls --color=auto'
+fi
+
 
 alias reload='source ~/.bashrc'
 
@@ -19,7 +27,7 @@ alias -- -="cd -"       # Go back
 alias shred='shred -uzv'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 
-function aliases-help() {
+function help-aliases() {
   echo "Generic Alias Usage"
   echo
   echo "  ls     = ls -G"

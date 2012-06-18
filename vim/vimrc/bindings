@@ -58,3 +58,5 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
+" Gundo mapping F5 to undo tree
+nnoremap <F5> :GundoToggle<CR>

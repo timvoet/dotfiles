@@ -6,7 +6,8 @@
 ### Rakefile updated to support zip and gzip files
 ###
 ### Modified from: http://github.com/bleything/dotvim
-##
+###
+### This is eventually going to be replaced by git submodule approach ( i think )
 ########################################################################
 
 require 'pathname'
@@ -40,6 +41,8 @@ namespace :vim do
     :unimpaired      => "git://github.com/tpope/vim-unimpaired.git",
     :gpg            => "git://gitorious.org/vim-gnupg/vim-gnupg.git",
 #    :grep           => "http://www.vim.org/scripts/download_script.php?src_id=7645",
+    :powerline           => "git://github.com/Lokaltog/vim-powerline.git",
+    #:gundo          => "git://github.com/sjl/gundo.vim.git",
 
     # syntax definitions
     :syntax_markdown  => "git://github.com/ujihisa/vim-markdown.git",
