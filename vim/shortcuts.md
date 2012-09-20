@@ -1,3 +1,4 @@
+Markdown syntax -- http://stackoverflow.com/editing-help<br/>
 &lt;Leader&gt; set to ,<br/>
 &lt;LocalLeader&gt; set to \
 
