@@ -1,4 +1,4 @@
-&lt;Leader&gt; set to ,  
+&lt;Leader&gt; set to ,<br/>
 &lt;LocalLeader&gt; set to \
 
 BufExplorer
@@ -19,9 +19,9 @@ BASH tricks
 
 Vim bindings
 ============
-* &gt;l&lt;?      display shortcuts ( this file )
-* &gt;l&lt;n      toggles line numbers
-* &gt;l&lt;s      trims the trailing white space from the entire file
+* &lt;l&gt;?      display shortcuts ( this file )
+* &lt;l&gt;n      toggles line numbers
+* &lt;l&gt;s      trims the trailing white space from the entire file
 * zr        opens all cold folds
 * zm        closes all folds
 * zo        opens a specific fold
