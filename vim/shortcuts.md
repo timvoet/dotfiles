@@ -1,4 +1,4 @@
-&lt;Leader&gt; set to , 
+&lt;Leader&gt; set to ,  
 &lt;LocalLeader&gt; set to \
 
 BufExplorer
@@ -39,6 +39,7 @@ In Edit Mode
 * :tabp         go to previous tab
 * :tabfirst     go to first tab
 * :tablast      go to last tab
+
 In normal mode, you can type:
 -----------------------------
 * gt            go to next tab
