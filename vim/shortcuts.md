@@ -48,4 +48,4 @@ In normal mode, you can type:
 
 VIM Tips
 ========
-* :diffsplit <filename>
+* :diffsplit &lg;filenam&gt;e
