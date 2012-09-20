@@ -31,3 +31,5 @@ export EDITOR=`which vim`
 #export GDK_NATIVE_WINDOWS=1
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

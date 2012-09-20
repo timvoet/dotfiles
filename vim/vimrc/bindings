@@ -13,9 +13,9 @@
 let mapleader=','    " set leader to ,
 
 " Open shortcuts 
-map <leader>? :tabe ~/mydotfiles/vim/shortcuts.txt<CR>
-autocmd BufRead ~/mydotfiles/vim/shortcuts.txt map <buffer> <leader>? :bdelete shortcuts.txt<CR>
-autocmd BufRead ~/mydotfiles/vim/shortcuts.txt setfiletype txtfmt
+map <leader>? :tabe ~/dotfiles/vim/shortcuts.md<CR>
+autocmd BufRead ~/dotfiles/vim/shortcuts.md map <buffer> <leader>? :bdelete shortcuts.md<CR>
+autocmd BufRead ~/dotfiles/vim/shortcuts.md setfiletype mkd
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
