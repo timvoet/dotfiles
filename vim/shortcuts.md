@@ -4,23 +4,23 @@ Markdown syntax -- http://stackoverflow.com/editing-help<br/>
 
 BufExplorer
 ===========
-"  &lt;l&gt;be  (normal open)
-"  &lt;l&gt;bs  (force horizontal split open)
-"  &lt;l&gt;bv  (force vertical split open)
-" &lt;F1&gt; : toggle this help
-" &lt;enter&gt; or o or Mouse-Double-Click : open buffer under cursor
-" &lt;shift-enter&gt; or t : open buffer in another tab
-" d : delete buffer
-" D : wipe buffer
-" f : toggle find active buffer
-" p : toggle spliting of file and path name
-" q : quit
-" r : reverse sort
-" R : toggle showing relative or full paths
-" s : cycle thru "sort by" fields ['number', 'name', 'fullpath', 'mru', 'extension']
-" S : reverse cycle thru "sort by" fields
-" T : toggle if to show only buffers for this tab or not
-" u : toggle showing unlisted buffers
+*  &lt;l&gt;be  (normal open)
+*  &lt;l&gt;bs  (force horizontal split open)
+*  &lt;l&gt;bv  (force vertical split open)
+* &lt;F1&gt; : toggle this help
+* &lt;enter&gt; or o or Mouse-Double-Click : open buffer under cursor
+* &lt;shift-enter&gt; or t : open buffer in another tab
+* d : delete buffer
+* D : wipe buffer
+* f : toggle find active buffer
+* p : toggle spliting of file and path name
+* q : quit
+* r : reverse sort
+* R : toggle showing relative or full paths
+* s : cycle thru "sort by" fields ['number', 'name', 'fullpath', 'mru', 'extension']
+* S : reverse cycle thru "sort by" fields
+* T : toggle if to show only buffers for this tab or not
+* u : toggle showing unlisted buffers
 
 NERDTree
 ========
