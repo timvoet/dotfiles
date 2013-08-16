@@ -35,15 +35,15 @@ namespace :vim do
     #:matchit        => "http://www.vim.org/scripts/download_script.php?src_id=8196",
     #:endwise        => "http://www.vim.org/scripts/download_script.php?src_id=9299",
     :git            => "git://github.com/tpope/vim-git.git",
-    #:fugitive       => "git://github.com/tpope/vim-fugitive.git",
+    :fugitive       => "git://github.com/tpope/vim-fugitive.git",
     #:jekyll         => "git://github.com/csexton/jekyll.vim.git",
-    :rvm            => "git://github.com/csexton/rvm.vim.git",
+    :rvm            => "git://github.com/tpope/vim-rvm.git",
     :unimpaired      => "git://github.com/tpope/vim-unimpaired.git",
     :gpg            => "git://gitorious.org/vim-gnupg/vim-gnupg.git",
 #    :grep           => "http://www.vim.org/scripts/download_script.php?src_id=7645",
     :powerline           => "git://github.com/Lokaltog/vim-powerline.git",
     #:gundo          => "git://github.com/sjl/gundo.vim.git",
-
+    :bundler        => "https://github.com/tpope/vim-bundler.git",
     # syntax definitions
     :syntax_markdown  => "git://github.com/ujihisa/vim-markdown.git",
     :syntax_textile   => "git://github.com/timcharper/textile.vim.git",

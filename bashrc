@@ -22,10 +22,16 @@ fi
 if [ -f ~/.bash_variables ]; then
   . ~/.bash_variables
 fi
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home
-export PEAR_HOME=$HOME/pear
-export MAVEN_HOME=$HOME
-export PATH=${PATH}:~/scripts:$JAVA_HOME/bin:$PEAR_HOME/bin
+os=`uname`
+if [[ $os == "Darwin" ]]; then
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_07.jdk/Contents/Home
+  export PEAR_HOME=$HOME/pear
+  #export MAVEN_HOME=$HOME/Library/Java/apache-maven-2.2.1
+  export MAVEN_HOME=$HOME/Library/Java/apache-maven-3.0.4
+  export ANDROID_HOME=$HOME/android/sdk
+fi
+
+export PATH=~/scripts:$JAVA_HOME/bin:$PEAR_HOME/bin:$MAVEN_HOME/bin:${PATH}
 export EDITOR=`which vim`
 #export JAVA_HOME=/usr/lib/jvm/java-6-sun
 #export GDK_NATIVE_WINDOWS=1
