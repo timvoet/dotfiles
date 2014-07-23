@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+STDIN.readlines.each do |line|
+  puts line.rstrip
+end

@@ -37,9 +37,9 @@ namespace :vim do
     :git            => "git://github.com/tpope/vim-git.git",
     :fugitive       => "git://github.com/tpope/vim-fugitive.git",
     #:jekyll         => "git://github.com/csexton/jekyll.vim.git",
-    :rvm            => "git://github.com/tpope/vim-rvm.git",
+    #:rvm            => "git://github.com/tpope/vim-rvm.git",
     :unimpaired      => "git://github.com/tpope/vim-unimpaired.git",
-    :gpg            => "git://gitorious.org/vim-gnupg/vim-gnupg.git",
+    #:gpg            => "git@gitorious.org:vim-gnupg/vim-gnupg.git",
 #    :grep           => "http://www.vim.org/scripts/download_script.php?src_id=7645",
     :powerline           => "git://github.com/Lokaltog/vim-powerline.git",
     #:gundo          => "git://github.com/sjl/gundo.vim.git",
@@ -57,6 +57,7 @@ namespace :vim do
 #    :color_sampler   => "http://www.vim.org/scripts/download_script.php?src_id=12179",
     :blackboard => "git://github.com/nelstrom/vim-blackboard.git",
     #:dawn => "http://www.vim.org/scripts/download_script.php?src_id=4807",
+    :syntax_less             => "git://github.com/groenewege/vim-less.git",
   }
 
   desc "update any bundles defined in the Rakefile"

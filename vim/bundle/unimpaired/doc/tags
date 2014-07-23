@@ -1,3 +1,9 @@
+<P	unimpaired.txt	/*<P*
+<p	unimpaired.txt	/*<p*
+=P	unimpaired.txt	/*=P*
+=p	unimpaired.txt	/*=p*
+>P	unimpaired.txt	/*>P*
+>p	unimpaired.txt	/*>p*
 [<C-L>	unimpaired.txt	/*[<C-L>*
 [<C-Q>	unimpaired.txt	/*[<C-Q>*
 [<Space>	unimpaired.txt	/*[<Space>*
@@ -12,6 +18,7 @@
 [f	unimpaired.txt	/*[f*
 [l	unimpaired.txt	/*[l*
 [n	unimpaired.txt	/*[n*
+[ob	unimpaired.txt	/*[ob*
 [oc	unimpaired.txt	/*[oc*
 [od	unimpaired.txt	/*[od*
 [oh	unimpaired.txt	/*[oh*
@@ -45,6 +52,7 @@
 ]f	unimpaired.txt	/*]f*
 ]l	unimpaired.txt	/*]l*
 ]n	unimpaired.txt	/*]n*
+]ob	unimpaired.txt	/*]ob*
 ]oc	unimpaired.txt	/*]oc*
 ]od	unimpaired.txt	/*]od*
 ]oh	unimpaired.txt	/*]oh*
@@ -64,6 +72,7 @@
 ]xx	unimpaired.txt	/*]xx*
 ]y	unimpaired.txt	/*]y*
 ]yy	unimpaired.txt	/*]yy*
+cob	unimpaired.txt	/*cob*
 coc	unimpaired.txt	/*coc*
 cod	unimpaired.txt	/*cod*
 coh	unimpaired.txt	/*coh*
@@ -79,6 +88,7 @@ unimpaired	unimpaired.txt	/*unimpaired*
 unimpaired-encoding	unimpaired.txt	/*unimpaired-encoding*
 unimpaired-lines	unimpaired.txt	/*unimpaired-lines*
 unimpaired-next	unimpaired.txt	/*unimpaired-next*
+unimpaired-pasting	unimpaired.txt	/*unimpaired-pasting*
 unimpaired-todo	unimpaired.txt	/*unimpaired-todo*
 unimpaired-toggling	unimpaired.txt	/*unimpaired-toggling*
 unimpaired.txt	unimpaired.txt	/*unimpaired.txt*
