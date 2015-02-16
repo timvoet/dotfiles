@@ -1,0 +1,14 @@
+-- Put this alias in .bashrc to turn on session logging
+-- alias psql='psql -eL /tmp/psql.log'
+\timing on
+\setenv LESS -imx4F
+-- \x auto
+
+-- Put a space in front of queries you don't want to save
+\set HISTCONTROL ignorespace
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTSIZE 20000
+ -- Huge history file -- ctrl-r is useful
+\pset null '[NULL]'
+-- Don't exit with ctrl-d unless you press it 5 times
+\set IGNOREEOF 5

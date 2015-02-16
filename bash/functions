@@ -127,12 +127,52 @@ gogogadget(){
       VBoxHeadless -startvm "$1" & > /dev/null
 }
 
+
+add_postgres_path(){
+  if ! is_in_path "Postgres" 
+  then
+    PATH='/Applications/Postgres.app/Contents/Versions/9.3/bin':$PATH
+    export PATH
+  fi
+}
+
+add_java_path(){
+  if ! is_in_path "Java"
+  then
+    #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home
+    export MAVEN_HOME=$HOME/Library/Java/maven
+    export ANT_HOME=$HOME/Library/Java/ant
+    export MQ_HOME=$HOME/Library/Java/activemq
+    export TOMCAT_HOME=$HOME/Library/Java/tomcat
+    export CATALINA_HOME=$TOMCAT_HOME
+    export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PEAR_HOME/bin:$MAVEN_HOME/bin:${PATH}:$ANDROID_HOME/tools:$ANT_HOME/bin
+  fi
+}
+
+
+is_in_path(){
+  if [[ $PATH == *$1* ]]
+  then
+    return 0;
+  else
+    return 1;
+  fi
+}
+
+
 restore_heroku(){
  echo "restoring heroku backup"
  echo "username :$1"
  echo "database :$2"
  echo "backup file:$3"
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -U $1 -d $2 $3
+}
+
+flatten(){
+    echo "Flattening $1 subdirectories"
+    find $1 -mindepth 2 -type f -exec mv -i '{}' $1 ';'
+
 }
 
 function color_my_prompt {
@@ -160,7 +200,10 @@ help-functions(){
   echo " nls        = greps for a pattern in a note file"
   echo " ndel       = deletes a note file"
   echo " sshcopyid  = copy's an ssh_id.pub to a remote host"
+  echo " gh         = Grep history for item then use !<num> to re-execute command"
   echo " millisec2seconds = converts milliseconds to seconds"
+  echo " add_postgres_path = adds the postgres tools to the path"
+  echo " add_java_path = adds the various java tools to the path"
   echo " "
   echo " "
   echo " "
