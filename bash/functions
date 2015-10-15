@@ -137,16 +137,23 @@ add_postgres_path(){
 }
 
 add_java_path(){
-  if ! is_in_path "Java"
-  then
-    #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home
-    export MAVEN_HOME=$HOME/Library/Java/maven
-    export ANT_HOME=$HOME/Library/Java/ant
-    export MQ_HOME=$HOME/Library/Java/activemq
-    export TOMCAT_HOME=$HOME/Library/Java/tomcat
-    export CATALINA_HOME=$TOMCAT_HOME
-    export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PEAR_HOME/bin:$MAVEN_HOME/bin:${PATH}:$ANDROID_HOME/tools:$ANT_HOME/bin
+  os=`uname`
+  if [[ $os == "Linux" ]]; then
+    export MAVEN_HOME=/usr/local/apache_maven
+    export PATH=$PATH:$MAVEN_HOME/bin
+  fi
+  if [[ $os == "Darwin" ]]; then
+    if ! is_in_path "Java"
+    then
+      #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home
+      export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home
+      export MAVEN_HOME=$HOME/Library/Java/maven
+      export ANT_HOME=$HOME/Library/Java/ant
+      export MQ_HOME=$HOME/Library/Java/activemq
+      export TOMCAT_HOME=$HOME/Library/Java/tomcat
+      export CATALINA_HOME=$TOMCAT_HOME
+      export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PEAR_HOME/bin:$MAVEN_HOME/bin:${PATH}:$ANDROID_HOME/tools:$ANT_HOME/bin
+    fi
   fi
 }
 

@@ -26,14 +26,14 @@ os=`uname`
 if [[ $os == "Darwin" ]]; then
   export ANDROID_HOME=$HOME/android/sdk
   export ANT_HOME=/Library/Java/apache-ant-1.9.2
+  export PATH=:$ANDROID_HOME/tools:$PATH
 fi
 
-export PATH=:.:~/scripts:/usr/local/bin:$ANDROID_HOME/tools:$PATH
+export PATH=:.:~/scripts:/usr/local/bin:$PATH
 export EDITOR=`which vim`
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-#export JAVA_HOME=/usr/lib/jvm/java-6-sun
-#export GDK_NATIVE_WINDOWS=1
 
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init -)"
