@@ -182,6 +182,10 @@ flatten(){
 
 }
 
+function my_public_ip {
+    ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//' | head -1
+}
+
 function color_my_prompt {
     local __user_and_host="\[\033[01;32m\]\u"
     local __cur_location="\[\033[01;34m\]\w"
