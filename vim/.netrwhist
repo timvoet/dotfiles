@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/tvoet/AndroidStudioProjects/Slainte-android/Slainte/build'
 let g:netrw_dirhist_2='/Users/tvoet/AndroidStudioProjects/Slainte-android/gradle/wrapper'
 let g:netrw_dirhist_3='/Users/tvoet/projects/personal/util-scripts/git-hooks'
 let g:netrw_dirhist_4='/Users/tvoet/Library/Java/apache-tomcat-7.0.52/webapps/hcnavigator/WEB-INF/views/tracker'
 let g:netrw_dirhist_5='/Users/tvoet/Library/Java/apache-tomcat-7.0.52/webapps/hcnavigator/resources/css'
 let g:netrw_dirhist_6='/Users/tvoet/projects/personal/dojomanagement/tmp'
+let g:netrw_dirhist_7='/Users/tvoet/.ssh'

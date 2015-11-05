@@ -26,6 +26,7 @@ alias ...='cd ../..'    # Go up two directories
 alias -- -="cd -"       # Go back
 alias shred='shred -uzv'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
+alias gh='history | grep '
 
 function help-aliases() {
   echo "Generic Alias Usage"
