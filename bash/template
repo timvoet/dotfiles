@@ -1,6 +1,6 @@
 #!/bin/bash
 set +e  #sets that the script should exit should a command not return 0
-set +u  #sets that the script should fail if a variable isn't set when used
+set +u  #sets that the script should fail if a variable isnt set when used
 NORMAL=$(tput sgr0)
 GREEN=$(tput setaf 2; tput bold)
 YELLOW=$(tput setaf 3)
