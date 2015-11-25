@@ -33,15 +33,14 @@ if [[ $os == "Darwin" ]]; then
   export CATALINA_HOME=$TOMCAT_HOME
   export ANDROID_HOME=$HOME/android/sdk
   export ANT_HOME=/Library/Java/apache-ant-1.9.2
-  export POSTGRES=/Applications/Postgres93.app/Contents/MacOS
+  export PATH=:$ANDROID_HOME/tools:$PATH
 fi
 
-export PATH=":.:~/bin:~/scripts:$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PEAR_HOME/bin:$MAVEN_HOME/bin:$ANDROID_HOME/tools:$ANT_HOME/bin:$POSTGRES/bin:/usr/local/bin:$PATH"
+export PATH=:.:~/scripts:/usr/local/bin:$PATH
 export EDITOR=`which vim`
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-#export JAVA_HOME=/usr/lib/jvm/java-6-sun
-#export GDK_NATIVE_WINDOWS=1
 
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init -)"

@@ -127,6 +127,64 @@ gogogadget(){
       VBoxHeadless -startvm "$1" & > /dev/null
 }
 
+
+add_postgres_path(){
+  if ! is_in_path "Postgres" 
+  then
+    PATH='/Applications/Postgres.app/Contents/Versions/9.3/bin':$PATH
+    export PATH
+  fi
+}
+
+add_java_path(){
+  os=`uname`
+  if [[ $os == "Linux" ]]; then
+    export MAVEN_HOME=/usr/local/apache_maven
+    export PATH=$PATH:$MAVEN_HOME/bin
+  fi
+  if [[ $os == "Darwin" ]]; then
+    if ! is_in_path "Java"
+    then
+      #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home
+      export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home
+      export MAVEN_HOME=$HOME/Library/Java/maven
+      export ANT_HOME=$HOME/Library/Java/ant
+      export MQ_HOME=$HOME/Library/Java/activemq
+      export TOMCAT_HOME=$HOME/Library/Java/tomcat
+      export CATALINA_HOME=$TOMCAT_HOME
+      export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PEAR_HOME/bin:$MAVEN_HOME/bin:${PATH}:$ANDROID_HOME/tools:$ANT_HOME/bin
+    fi
+  fi
+}
+
+function git_ahead_behind {
+    if [[ `git rev-parse --is-inside-work-tree 2> /dev/null` ]]; then
+      curr_branch=$(git rev-parse --abbrev-ref HEAD);
+      curr_remote=$(git config branch.$curr_branch.remote);
+      curr_merge_branch=$(git config branch.$curr_branch.merge | cut -d / -f 3);
+      echo `git rev-list --left-right --count $curr_branch...$curr_remote/$curr_merge_branch | tr -s '\t' '|'`;
+    else
+      echo ''
+    fi
+}
+function git_prompt {
+    if [[ `git rev-parse --is-inside-work-tree 2> /dev/null ` ]]; then
+      echo `git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\ $(git_ahead_behind)\)\ /`
+    else
+      echo ''
+    fi
+}
+
+is_in_path(){
+  if [[ $PATH == *$1* ]]
+  then
+    return 0;
+  else
+    return 1;
+  fi
+}
+
+
 restore_heroku(){
  echo "restoring heroku backup"
  echo "username :$1"
@@ -135,14 +193,25 @@ restore_heroku(){
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -U $1 -d $2 $3
 }
 
+flatten(){
+    echo "Flattening $1 subdirectories"
+    find $1 -mindepth 2 -type f -exec mv -i '{}' $1 ';'
+
+}
+
+function my_public_ip {
+    ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//' | head -1
+}
+
 function color_my_prompt {
     local __user_and_host="\[\033[01;32m\]\u"
     local __cur_location="\[\033[01;34m\]\w"
     local __git_branch_color="\[\033[31m\]"
     #local __git_branch="\`ruby -e \"print (%x{git branch 2> /dev/null}.grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\`"
-    local __git_branch='`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`'
+    local __git_branch='$(git_prompt)'
     local __prompt_tail="\[\033[35m\]$"
     local __last_color="\[\033[00m\]"
+    #export PS1="$__user_and_host $__cur_location $__git_branch_color$__git_branch$__prompt_tail$__last_color "
     export PS1="$__user_and_host $__cur_location $__git_branch_color$__git_branch$__prompt_tail$__last_color "
 }
 color_my_prompt
@@ -160,7 +229,10 @@ help-functions(){
   echo " nls        = greps for a pattern in a note file"
   echo " ndel       = deletes a note file"
   echo " sshcopyid  = copy's an ssh_id.pub to a remote host"
+  echo " gh         = Grep history for item then use !<num> to re-execute command"
   echo " millisec2seconds = converts milliseconds to seconds"
+  echo " add_postgres_path = adds the postgres tools to the path"
+  echo " add_java_path = adds the various java tools to the path"
   echo " "
   echo " "
   echo " "
