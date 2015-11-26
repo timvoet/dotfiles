@@ -159,17 +159,28 @@ add_java_path(){
 
 function git_ahead_behind {
     if [[ `git rev-parse --is-inside-work-tree 2> /dev/null` ]]; then
-      curr_branch=$(git rev-parse --abbrev-ref HEAD);
-      curr_remote=$(git config branch.$curr_branch.remote);
-      curr_merge_branch=$(git config branch.$curr_branch.merge | cut -d / -f 3,4);
-      echo `git rev-list --left-right --count $curr_branch...$curr_remote/$curr_merge_branch | tr -s '\t' '|'`;
+      local curr_branch=$(git rev-parse --abbrev-ref HEAD);
+      local curr_remote=$(git config branch.$curr_branch.remote);
+      if [[ $curr_remote == "" ]]; then
+        ''
+      else
+        local curr_merge_branch=$(git config branch.$curr_branch.merge | cut -d / -f 3,4);
+        echo `git rev-list --left-right --count $curr_branch...$curr_remote/$curr_merge_branch | tr -s '\t' '|'`;
+      fi
     else
       echo ''
     fi
 }
+
 function git_prompt {
     if [[ `git rev-parse --is-inside-work-tree 2> /dev/null ` ]]; then
-      echo `git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\ $(git_ahead_behind)\)\ /`
+      local curr_branch=$(git rev-parse --abbrev-ref HEAD);
+      local curr_remote=$(git config branch.$curr_branch.remote);
+      if [[ $curr_remote == "" ]]; then
+        echo `git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\ 'local_only'\)\ /`
+      else
+        echo `git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\ $(git_ahead_behind)\)\ /`
+      fi
     else
       echo ''
     fi

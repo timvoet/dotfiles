@@ -36,6 +36,7 @@ autocmd BufNewFile,BufRead ~/.vim/*  setfiletype vim
 autocmd BufNewFile,BufRead ~/.vim/vimrc/* setfiletype vim
 autocmd BufNewFile,BufRead ~/.mutt/* setfiletype muttrc
 autocmd BufNewFile,BufRead ~/.bash/* setfiletype sh
+autocmd BufNewFile,BufRead ~/dotfiles/bash/* setfiletype sh
 autocmd BufNewFile,BufRead ~/lib/bash/config_files/vim/vimrc/*  setfiletype vim
 
 " set the file type for SQL files
