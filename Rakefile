@@ -41,8 +41,8 @@ namespace :vim do
     :unimpaired      => "git://github.com/tpope/vim-unimpaired.git",
     #:gpg            => "git@gitorious.org:vim-gnupg/vim-gnupg.git",
     #:powerline           => "git://github.com/Lokaltog/vim-powerline.git",
-    :tmuxline       => "git@github.com:edkolev/tmuxline.vim.git",
-    :lightline      => "git@github.com:itchyny/lightline.vim.git",
+    :tmuxline       => "git://github.com/edkolev/tmuxline.vim.git",
+    :lightline      => "git://github.com/itchyny/lightline.vim.git",
     #:gundo          => "git://github.com/sjl/gundo.vim.git",
     :bundler        => "https://github.com/tpope/vim-bundler.git",
     # syntax definitions
