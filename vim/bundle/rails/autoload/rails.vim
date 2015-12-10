@@ -1461,19 +1461,19 @@ call s:add_methods('app', ['rake_command'])
 function! s:initOpenURL() abort
   if exists(":OpenURL") != 2
     if exists(":Browse") == 2
-      command -bar -nargs=1 OpenURL :Browse <args>
+      command -bar -nargs=1 OpenURL Browse <args>
     elseif has("gui_mac") || has("gui_macvim") || exists("$SECURITYSESSIONID")
-      command -bar -nargs=1 OpenURL :!open <args>
+      command -bar -nargs=1 OpenURL exe '!open' shellescape(<q-args>, 1)
     elseif has("gui_win32")
-      command -bar -nargs=1 OpenURL :!start cmd /cstart /b <args>
+      command -bar -nargs=1 OpenURL exe '!start cmd /cstart /b' shellescape(<q-args>, 1)
     elseif executable("xdg-open")
-      command -bar -nargs=1 OpenURL :!xdg-open <args> &
+      command -bar -nargs=1 OpenURL exe '!xdg-open' shellescape(<q-args>, 1) '&'
     elseif executable("sensible-browser")
-      command -bar -nargs=1 OpenURL :!sensible-browser <args>
+      command -bar -nargs=1 OpenURL exe '!sensible-browser' shellescape(<q-args>, 1)
     elseif executable('launchy')
-      command -bar -nargs=1 OpenURL :!launchy <args>
+      command -bar -nargs=1 OpenURL exe '!launchy' shellescape(<q-args>, 1)
     elseif executable('git')
-      command -bar -nargs=1 OpenURL :!git web--browse <args>
+      command -bar -nargs=1 OpenURL exe '!git web--browse' shellescape(<q-args>, 1)
     endif
   endif
 endfunction
@@ -1589,6 +1589,7 @@ function! s:Preview(bang, lnum, uri) abort
     let binding = '0.0.0.0:3000'
   endif
   let binding = s:sub(binding, '^0\.0\.0\.0>|^127\.0\.0\.1>', 'localhost')
+  let binding = s:sub(binding, '^\[::\]', '[::1]')
   let uri = empty(a:uri) ? get(rails#buffer().preview_urls(a:lnum),0,'') : a:uri
   if uri =~ '://'
     "
@@ -1802,7 +1803,8 @@ function! rails#get_binding_for(pid) abort
   endif
   if has('win32')
     let output = system('netstat -anop tcp')
-    return matchstr(output, '\n\s*TCP\s\+\zs\S\+\ze\s\+\S\+\s\+LISTENING\s\+'.a:pid.'\>')
+    let binding = matchstr(output, '\n\s*TCP\s\+\zs\S\+\ze\s\+\S\+\s\+LISTENING\s\+'.a:pid.'\>')
+    return s:sub(binding, '^([^[]*:.*):', '[\1]:')
   endif
   if executable('lsof')
     let lsof = 'lsof'
@@ -1810,14 +1812,20 @@ function! rails#get_binding_for(pid) abort
     let lsof = '/usr/sbin/lsof'
   endif
   if exists('lsof')
-    let output = system(lsof.' -an -itcp -sTCP:LISTEN -p'.a:pid)
+    let output = system(lsof.' -an -i4tcp -sTCP:LISTEN -p'.a:pid)
     let binding = matchstr(output, '\S\+:\d\+\ze\s\+(LISTEN)\n')
-    return s:sub(binding, '^\*', '0.0.0.0')
+    let binding = s:sub(binding, '^\*', '0.0.0.0')
+    if empty(binding)
+      let output = system(lsof.' -an -i6tcp -sTCP:LISTEN -p'.a:pid)
+      let binding = matchstr(output, '\S\+:\d\+\ze\s\+(LISTEN)\n')
+      let binding = s:sub(binding, '^\*', '[::]')
+    endif
+    return binding
   endif
   if executable('netstat')
     let output = system('netstat -antp')
-    return matchstr(output, '\S\+:\d\+\ze\s\+\S\+\s\+LISTEN\s\+'.a:pid.'/')
-    return binding
+    let binding = matchstr(output, '\S\+:\d\+\ze\s\+\S\+\s\+LISTEN\s\+'.a:pid.'/')
+    return s:sub(binding, '^([^[]*:.*):', '[\1]:')
   endif
   return ''
 endfunction
@@ -3261,9 +3269,12 @@ function! s:readable_alternate_candidates(...) dict abort
   let f = self.name()
   let placeholders = {}
   if a:0 && a:1
+    let placeholders.lnum = a:1
+    let placeholders.line = a:1
     let lastmethod = self.last_method(a:1)
     if !empty(lastmethod)
       let placeholders.d = lastmethod
+      let placeholders.define = lastmethod
     endif
     let projected = self.projected('related', placeholders)
     if !empty(projected)
@@ -3800,7 +3811,7 @@ function! rails#buffer_syntax()
           exe "syn keyword rubyRailsUserMethod ".join(rails#app().user_assertions())
         endif
         syn keyword rubyRailsTestMethod refute refute_empty refute_equal refute_in_delta refute_in_epsilon refute_includes refute_instance_of refute_kind_of refute_match refute_nil refute_operator refute_predicate refute_respond_to refute_same
-        syn keyword rubyRailsTestMethod add_assertion assert assert_block assert_equal assert_in_delta assert_instance_of assert_kind_of assert_match assert_nil assert_no_match assert_not assert_not_equal assert_not_nil assert_not_same assert_nothing_raised assert_nothing_thrown assert_operator assert_raise assert_respond_to assert_same assert_send assert_throws assert_recognizes assert_generates assert_routing flunk fixtures fixture_path use_transactional_fixtures use_instantiated_fixtures assert_difference assert_no_difference assert_valid
+        syn keyword rubyRailsTestMethod add_assertion assert assert_block assert_equal assert_includes assert_in_delta assert_instance_of assert_kind_of assert_match assert_nil assert_no_match assert_not assert_not_equal assert_not_nil assert_not_same assert_nothing_raised assert_nothing_thrown assert_operator assert_raise assert_respond_to assert_same assert_send assert_throws assert_recognizes assert_generates assert_routing flunk fixtures fixture_path use_transactional_fixtures use_instantiated_fixtures assert_difference assert_no_difference assert_valid
         syn keyword rubyRailsTestMethod test setup teardown
         if !buffer.type_name('test-unit')
           syn match   rubyRailsTestControllerMethod  '\.\@<!\<\%(get\|post\|put\|patch\|delete\|head\|process\|assigns\)\>'

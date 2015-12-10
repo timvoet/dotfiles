@@ -40,8 +40,9 @@ namespace :vim do
     #:rvm            => "git://github.com/tpope/vim-rvm.git",
     :unimpaired      => "git://github.com/tpope/vim-unimpaired.git",
     #:gpg            => "git@gitorious.org:vim-gnupg/vim-gnupg.git",
-#    :grep           => "http://www.vim.org/scripts/download_script.php?src_id=7645",
-    :powerline           => "git://github.com/Lokaltog/vim-powerline.git",
+    #:powerline           => "git://github.com/Lokaltog/vim-powerline.git",
+    :tmuxline       => "git@github.com:edkolev/tmuxline.vim.git",
+    :lightline      => "git@github.com:itchyny/lightline.vim.git",
     #:gundo          => "git://github.com/sjl/gundo.vim.git",
     :bundler        => "https://github.com/tpope/vim-bundler.git",
     # syntax definitions
