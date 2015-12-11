@@ -29,4 +29,4 @@ set fuopt+=maxhorz " allow fullscreen window to expand horizontally to
                    " size of screen.
 
 set noanti
-colorscheme blackboard_ed
+colorscheme solarized_dark

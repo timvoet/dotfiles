@@ -36,6 +36,9 @@ if [[ $os == "Darwin" ]]; then
   export PATH=:$ANDROID_HOME/tools:$PATH
 fi
 
+if [[ $os == "Linux" ]]; then
+  export TERM=xterm-256color
+fi
 export PATH=:.:~/scripts:/usr/local/bin:$PATH
 export EDITOR=`which vim`
 ### Added by the Heroku Toolbelt

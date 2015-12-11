@@ -13,3 +13,6 @@ source $HOME/.vim/vimrc/filetypes
 if has("gui_running")
     source $HOME/.vim/vimrc/gui
 endif
+if !has("gui_running")
+  set t_Co=256
+endif

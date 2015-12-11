@@ -57,6 +57,7 @@ namespace :vim do
     # Color Schemes
 #    :color_sampler   => "http://www.vim.org/scripts/download_script.php?src_id=12179",
     :blackboard => "git://github.com/nelstrom/vim-blackboard.git",
+    :solarized => "git://github.com/altercation/vim-colors-solarized.git",
     #:dawn => "http://www.vim.org/scripts/download_script.php?src_id=4807",
     :syntax_less             => "git://github.com/groenewege/vim-less.git",
   }

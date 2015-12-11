@@ -39,16 +39,11 @@ map <leader>a :Tabularize /=>\?<cr>
 """ Taglist
 map <leader>t :TlistToggle<cr>
 
-""" Powerline
-"set laststatus=2   " Always show the statusline
-"set encoding=utf-8 " Necessary to show unicode glyphs
-
 """ Light line
+set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
-set laststatus=2
-
 """ Gundo
 "let g:gundo_width = 60
 "let g:gundo_preview_height = 40
