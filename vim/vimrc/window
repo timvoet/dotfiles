@@ -42,4 +42,4 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{exists('g:loaded_fugitive')?fugitive#s
 """ C O L O R   O P T I O N S
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark " use colors suitable for dark backgrounds
-colorscheme solarized
+colorscheme blackboard_ed
