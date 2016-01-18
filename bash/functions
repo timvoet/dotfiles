@@ -129,11 +129,11 @@ gogogadget(){
 
 
 add_postgres_path(){
-  if ! is_in_path "Postgres" 
-  then
-    PATH='/Applications/Postgres.app/Contents/Versions/9.3/bin':$PATH
+  #if ! is_in_path "Postgres" 
+  #then
+    PATH='/Applications/Postgres93.app/Contents/MacOS/bin/':$PATH
     export PATH
-  fi
+  #fi
 }
 
 add_java_path(){
