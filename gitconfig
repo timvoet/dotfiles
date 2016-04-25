@@ -1,0 +1,17 @@
+[user]
+  name = Tim Voet
+  email = tim.voet@gmail.com
+[push]
+  default = simple
+
+[alias]
+  branches = branch -a
+  stashes = stash list
+  amend = commit --amend
+  unstage = reset -q HEAD --
+  discard = checkout --
+  uncommit = reset --mixed HEAD~
+  nevermind = !git reset --hard HEAD && git clean -d -f
+  graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+  precommit = diff --cached --diff-algorithm=minimal -w
+  alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /

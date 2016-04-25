@@ -28,6 +28,7 @@ alias shred='shred -uzv'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 alias gh='history | grep '
 
+
 function help-aliases() {
   echo "Generic Alias Usage"
   echo

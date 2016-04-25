@@ -4,6 +4,11 @@ export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
 export HISTCONTROL=erasedups
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
+eval "$(rbenv init -)"
+
+
 if [ -f ~/.bash/aliases ]; then
     . ~/.bash/aliases
 fi
@@ -43,9 +48,5 @@ export PATH=:.:~/scripts:/usr/local/bin:$PATH
 export EDITOR=`which vim`
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.rbenv/shims:$PATH"
-eval "$(rbenv init -)"
 
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
