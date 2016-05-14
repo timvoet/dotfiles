@@ -46,7 +46,7 @@
   # rename the <current_branch> to done-<current_branch>
   done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
   cb = "checkout -b"
-	springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
+  springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
 [color]
 	ui = true
 [help]
@@ -60,3 +60,4 @@
 	blame = less -S
 [grep]
 	fullname = true
+
