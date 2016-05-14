@@ -13,6 +13,22 @@
 [push]
 	default = simple
 [alias]
+  branches = branch -a
+  stashes = stash list
+  amend = commit --amend
+  unstage = reset -q HEAD --
+  discard = checkout --
+  uncommit = reset --mixed HEAD~
+  nevermind = !git reset --hard HEAD && git clean -d -f
+  graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+  precommit = diff --cached --diff-algorithm=minimal -w
+  alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+  delete-merged-branches = !git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d
+  branch-name = !git rev-parse --abbrev-ref HEAD
+  # publish - push the current branch to the remote "origin", and set it to track the upstream branch
+  publish = !git push -u origin $(git branch-name)
+  # unpublish Delete the remove version of the current branch
+  unpublish = !git push origin :$(git branch-name)
   #
   # logs related
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
